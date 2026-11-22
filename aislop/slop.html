@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kooli huviringide nädalaplaan ja avaldus ringiga liitumiseks.">
+  <title>Huviringid · Pärast tunde</title>
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABlBMVEUhPTHh66XLp0t4AAABG0lEQVR4AQEQAe/+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEBAQEBAQEBAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQWAAckveC0AAAAABJRU5ErkJggg==">
+  <link rel="preload" href="barlow-condensed-bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="slop.css">
+  <script src="slop.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#sisu">Liigu sisu juurde</a>
+  <main id="sisu" class="wrap" tabindex="-1">
+    <div class="directory">
+      <section class="schedule" aria-labelledby="nadalaplaan">
+        <div class="schedule-heading">
+          <h1>Huviringid</h1>
+          <h2 id="nadalaplaan" tabindex="-1">Nädalaplaan</h2>
+        </div>
+        <ul class="club-list" role="list">
+          <li class="club club-art" data-club="kunstiring">
+            <details>
+              <summary>
+                <span class="slot">
+                  <span class="day">Teisipäev</span>
+                  <time datetime="15:00">15.00</time>
+                </span>
+                <span class="club-main">
+                  <span class="club-name">Kunstiring</span>
+                  <span class="club-meta">
+                    <span class="room">Ruum 204</span>
+                    <span class="tag">Uus</span>
+                  </span>
+                </span>
+                <span class="toggle-mark" aria-hidden="true"></span>
+              </summary>
+              <div class="club-details">
+                <p>Proovi oma ideid pildis väljendada ja katseta eri väljendusviise.</p>
+                <button class="choose-club" type="button" hidden>Vali kunstiring</button>
+              </div>
+            </details>
+          </li>
+          <li class="club club-robotics" data-club="robootikaring">
+            <details>
+              <summary>
+                <span class="slot">
+                  <span class="day">Kolmapäev</span>
+                  <time datetime="16:00">16.00</time>
+                </span>
+                <span class="club-main">
+                  <span class="club-name">Robootikaring</span>
+                  <span class="club-meta">
+                    <span class="room">Ruum 112</span>
+                    <span class="tag">Tasuta</span>
+                  </span>
+                </span>
+                <span class="toggle-mark" aria-hidden="true"></span>
+              </summary>
+              <div class="club-details">
+                <p>Tutvu robotite ehitamise ja programmeerimisega.</p>
+                <button class="choose-club" type="button" hidden>Vali robootikaring</button>
+              </div>
+            </details>
+          </li>
+          <li class="club club-theatre" data-club="teatriring">
+            <details>
+              <summary>
+                <span class="slot">
+                  <span class="day">Neljapäev</span>
+                  <time datetime="15:30">15.30</time>
+                </span>
+                <span class="club-main">
+                  <span class="club-name">Teatriring</span>
+                  <span class="club-meta">
+                    <span class="room">Aula</span>
+                    <span class="tag">Katsejärgus</span>
+                  </span>
+                </span>
+                <span class="toggle-mark" aria-hidden="true"></span>
+              </summary>
+              <div class="club-details">
+                <p>Proovi laval mängimist ja jutusta koos teistega lugusid.</p>
+                <button class="choose-club" type="button" hidden>Vali teatriring</button>
+              </div>
+            </details>
+          </li>
+        </ul>
+      </section>
+
+      <section id="registreerumine" class="registration" aria-labelledby="registreerumise-pealkiri" tabindex="-1">
+        <details id="avalduse-paneel" open>
+          <summary>
+            <h2 id="registreerumise-pealkiri">Liitumisavaldus</h2>
+          </summary>
+          <div class="registration-content">
+            <p id="registreerumise-varu">Registreerumiseks pöördu ringi juhendaja poole.</p>
+
+            <form id="avalduse-vorm" hidden>
+              <p class="form-intro">Avaldus salvestub siin brauseris. Anna allalaaditud fail ringi juhendajale.</p>
+
+              <div class="field">
+                <label for="ring">Huviring</label>
+                <select id="ring" name="ring" required>
+                  <option value="">Vali huviring</option>
+                </select>
+                <p id="ring-viga" class="field-error" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="nimi">Osaleja nimi</label>
+                <input id="nimi" name="nimi" type="text" autocomplete="name" maxlength="100" required>
+                <p id="nimi-viga" class="field-error" hidden></p>
+              </div>
+
+              <p id="salvestamise-viga" class="field-error action-error" role="status"></p>
+              <div class="form-actions">
+                <button class="primary-button" type="submit">Salvesta avaldus</button>
+                <button id="laadi-varu" class="secondary-button" type="button" hidden>Laadi avaldus alla</button>
+                <button id="tyhista" class="secondary-button" type="button" hidden>Tühista muutmine</button>
+              </div>
+            </form>
+
+            <section id="salvestatud-avaldus" aria-labelledby="salvestatud-pealkiri" hidden>
+              <h3 id="salvestatud-pealkiri" tabindex="-1">Avaldus salvestatud</h3>
+              <dl class="draft-details">
+                <div>
+                  <dt>Huviring</dt>
+                  <dd id="salvestatud-ring"></dd>
+                </div>
+                <div>
+                  <dt>Osaleja</dt>
+                  <dd id="salvestatud-nimi"></dd>
+                </div>
+              </dl>
+              <p class="form-intro">Anna allalaaditud avaldus ringi juhendajale.</p>
+              <p id="kustutamise-viga" class="field-error action-error" role="status"></p>
+              <div class="form-actions">
+                <button id="laadi" class="primary-button" type="button">Laadi avaldus alla</button>
+                <div class="draft-actions">
+                  <button id="muuda" class="secondary-button" type="button">Muuda</button>
+                  <button id="kustuta" class="secondary-button" type="button">Kustuta avaldus</button>
+                </div>
+              </div>
+            </section>
+          </div>
+        </details>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,361 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Barlow Condensed";
+  src: url("barlow-condensed-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --ground: #f2eee5;
+  --paper: #fffdf7;
+  --ink: #201e18;
+  --muted: #57534b;
+  --blue: #293cbb;
+  --blue-dark: #1b2b93;
+  --error: #9c2f20;
+  --header-font: "Times New Roman", Times, serif;
+  --display: "Barlow Condensed", "Arial Narrow", "Arial", sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font: 1rem/1.5 system-ui, sans-serif;
+}
+
+h1, h2, h3, p, dl, dd { margin: 0; }
+button, input, select { font: inherit; }
+button, summary { cursor: pointer; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 3px;
+}
+
+[id][tabindex="-1"] { scroll-margin-block-start: 1.25rem; }
+
+.skip-link {
+  position: absolute;
+  z-index: 1;
+  inset: .75rem auto auto 1rem;
+  transform: translateY(-175%);
+  padding: .65rem 1rem;
+  background: var(--paper);
+}
+
+.skip-link:focus { transform: none; }
+
+.wrap {
+  width: min(100% - clamp(1.75rem, 7vw, 7rem), 73rem);
+  margin-inline: auto;
+}
+
+.directory {
+  --section-inset: clamp(.75rem, 2.2vw, 1.65rem);
+  --heading-height: clamp(6rem, 9.15vw, 8.25rem);
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(18rem, 1fr);
+  align-items: start;
+  gap: clamp(1.5rem, 3.8vw, 3.5rem);
+  padding-block: clamp(1.75rem, 4.5vw, 4rem) 4rem;
+}
+
+.schedule {
+  min-width: 0;
+  --slot-width: clamp(7rem, 13vw, 9rem);
+}
+
+.schedule-heading, .registration summary {
+  min-height: var(--heading-height);
+  padding: clamp(1rem, 3vw, 2rem) var(--section-inset) clamp(1rem, 2.6vw, 1.6rem);
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.schedule-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .65rem 1.5rem;
+}
+
+.schedule-heading h1 {
+  font: 700 clamp(2.7rem, 6vw, 4.8rem)/.95 var(--header-font);
+  letter-spacing: -.015em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.schedule-heading h2 {
+  font-size: .8rem;
+  font-weight: 700;
+  font-family: var(--header-font);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.schedule-heading :focus-visible { outline-color: var(--paper); }
+
+.club-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--paper);
+}
+
+.club-art { --slot: #f6c3b4; }
+.club-robotics { --slot: #d2dafc; }
+.club-theatre { --slot: #f2db93; }
+
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+
+.club summary {
+  display: grid;
+  grid-template-columns: var(--slot-width) minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--section-inset);
+  min-height: 6.4rem;
+  padding-inline-end: var(--section-inset);
+}
+
+.club:nth-child(even) summary { background: #f7f4eb; }
+
+.club summary:hover, .club details[open] > summary, .club-details {
+  background: #eee9dc;
+}
+
+.club summary:focus-visible {
+  outline-offset: -3px;
+}
+
+.slot {
+  display: grid;
+  align-self: stretch;
+  align-content: center;
+  gap: .1rem;
+  padding: .6rem clamp(.6rem, 1.65vw, 1.65rem);
+  background: var(--slot);
+  overflow-wrap: anywhere;
+}
+
+.day {
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.slot time {
+  font: 700 clamp(1.75rem, 3.2vw, 2.4rem)/.95 var(--display);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.club-main {
+  display: grid;
+  min-width: 0;
+  gap: .35rem;
+  padding-block: .9rem;
+}
+
+.club-name {
+  font: 700 clamp(1.6rem, 2.9vw, 2.35rem)/.95 var(--display);
+  overflow-wrap: anywhere;
+}
+
+.club-meta {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .15rem .55rem;
+  font-size: .83rem;
+}
+
+.room { color: var(--muted); }
+
+.tag {
+  padding-inline: .35rem;
+  background: var(--slot);
+  font-size: .75rem;
+  font-weight: 650;
+}
+
+.toggle-mark {
+  display: grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+}
+
+.toggle-mark::before, .toggle-mark::after {
+  content: "";
+  grid-area: 1 / 1;
+  width: .7rem;
+  border-top: 2px solid currentColor;
+}
+
+.toggle-mark::after { transform: rotate(90deg); }
+details[open] > summary .toggle-mark::after { visibility: hidden; }
+.club summary:hover .toggle-mark { background: var(--blue); color: var(--paper); }
+
+.club-details {
+  display: grid;
+  justify-items: start;
+  padding: .6rem var(--section-inset) .65rem calc(var(--slot-width) + var(--section-inset));
+}
+
+.club-details p { max-width: 46ch; color: var(--muted); }
+
+.choose-club, .secondary-button {
+  min-height: 2.75rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--blue);
+  font-size: .9rem;
+  font-weight: 650;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+}
+
+.choose-club { text-align: start; }
+.choose-club:hover, .secondary-button:hover { text-decoration-thickness: 2px; }
+
+.registration {
+  background: var(--paper);
+}
+
+.registration summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.registration summary:focus-visible {
+  outline-color: var(--paper);
+  outline-offset: -5px;
+}
+
+.registration summary:hover h2 { text-decoration: underline; text-underline-offset: .15em; }
+
+.registration summary::after {
+  content: "";
+  flex: none;
+  width: .55rem;
+  height: .55rem;
+  margin-inline-end: .15rem;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-.15rem) rotate(45deg);
+}
+
+.registration details[open] > summary::after {
+  transform: translateY(.15rem) rotate(225deg);
+}
+
+.registration h2 {
+  font: 700 clamp(1.65rem, 2.35vw, 2rem)/1.12 var(--header-font);
+  overflow-wrap: anywhere;
+}
+
+.registration-content { padding: var(--section-inset); }
+
+.form-intro {
+  max-width: 39ch;
+  color: var(--muted);
+  font-size: .9rem;
+}
+
+.field {
+  display: grid;
+  gap: .1rem;
+  margin-block-start: 1.4rem;
+}
+
+.field label { font-size: .875rem; font-weight: 700; }
+
+.field input, .field select {
+  width: 100%;
+  min-height: 2.85rem;
+  padding: .45rem .35rem;
+  border: 1px solid #726d60;
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field select { padding-inline-end: 1.25rem; }
+.field [aria-invalid="true"] { border-color: var(--error); }
+.field-error { color: var(--error); font-size: .85rem; }
+.action-error:not(:empty) { margin-block-start: .8rem; }
+
+.form-actions {
+  display: grid;
+  justify-items: start;
+  gap: .35rem;
+  margin-block-start: 1.35rem;
+}
+
+.primary-button {
+  min-height: 2.85rem;
+  padding: .55rem .85rem;
+  border: 1px solid var(--blue);
+  background: var(--blue);
+  color: var(--paper);
+  font-size: .9rem;
+  font-weight: 650;
+  text-align: start;
+}
+
+.primary-button:hover, .primary-button:active { background: var(--blue-dark); }
+
+.draft-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.2rem;
+}
+
+#salvestatud-pealkiri { font-size: 1rem; }
+
+.draft-details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  margin-block: .8rem;
+  padding-block: .7rem;
+  overflow-wrap: anywhere;
+}
+
+.draft-details dt { color: var(--muted); font-size: .8rem; }
+.draft-details dd { font-weight: 650; }
+
+@media (max-width: 53rem) {
+  .directory { grid-template-columns: minmax(0, 1fr); }
+  .registration summary { min-height: 3.75rem; padding-block: .85rem; }
+}
+
+@media (max-width: 31rem) {
+  .schedule { --slot-width: 6.2rem; }
+  .schedule-heading { display: grid; }
+  .schedule-heading h1 { font-size: clamp(2.15rem, 9vw, 2.75rem); }
+  .schedule-heading h2 { font-size: .8rem; }
+  .slot { padding-inline: .6rem; }
+  .club summary { min-height: 5.75rem; }
+  .toggle-mark { width: 1.5rem; height: 1.5rem; }
+  .club-details { padding-inline-start: var(--section-inset); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .primary-button { transition: background-color 120ms ease; }
+}
